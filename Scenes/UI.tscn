@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://qe77c0hu8w0n"]
+
+[ext_resource type="Script" uid="uid://bw6vrhjpi81cc" path="res://Scripts/ui.gd" id="1_w371h"]
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_w371h")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 574.0
+offset_top = 86.0
+offset_right = 614.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 18
+
+[node name="FuelBar" type="ProgressBar" parent="."]
+offset_left = 994.0
+offset_top = 86.0
+offset_right = 998.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 18
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 71.0
+offset_top = 53.0
+offset_right = 111.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 18
+
+[node name="GameOverPanel" type="Panel" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
