@@ -369,17 +369,17 @@ offset_top = 170.0
 offset_right = 1562.0
 offset_bottom = 442.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/LeaderboardPanel"]
+[node name="LeaderboardVBox" type="VBoxContainer" parent="UI/LeaderboardPanel"]
 layout_mode = 2
 
-[node name="LeaderboardTitle" type="Label" parent="UI/LeaderboardPanel/VBoxContainer"]
+[node name="LeaderboardTitle" type="Label" parent="UI/LeaderboardPanel/LeaderboardVBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fdnlq")
 theme_override_font_sizes/font_size = 25
 text = "🏆 Leaderboard"
 horizontal_alignment = 1
 
-[node name="LeaderboardList" type="VBoxContainer" parent="UI/LeaderboardPanel/VBoxContainer"]
+[node name="LeaderboardList" type="VBoxContainer" parent="UI/LeaderboardPanel/LeaderboardVBox"]
 layout_mode = 2
 
 [node name="NameEntryPanel" type="Panel" parent="UI"]
