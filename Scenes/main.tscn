@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmxwecjghhc1l"]
+[gd_scene load_steps=11 format=3 uid="uid://cmxwecjghhc1l"]
 
 [ext_resource type="Script" uid="uid://basomppy4fhey" path="res://Scripts/Main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://btpojyonk2nas" path="res://Scenes/Player.tscn" id="2_bo1nx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bw6vrhjpi81cc" path="res://Scripts/ui.gd" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://dpihpfedj7w1i" path="res://Assets/kenney_development-essentials/Gradient/gradient-radial.png" id="4_21xkr"]
 [ext_resource type="Shader" uid="uid://clqk5d06upr1f" path="res://Scenes/main.gdshader" id="5_kry3j"]
+[ext_resource type="AudioStream" uid="uid://cei503vu3d0pc" path="res://Music/hitslab-game-gaming-video-game-music-459876.mp3" id="7_6bp64"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
 texture = ExtResource("2_jjvhh")
@@ -253,6 +254,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="TVFrame" type="TextureRect" parent="PostProcessLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_8gbba")
 
@@ -410,6 +415,11 @@ layout_mode = 2
 [node name="SubmitButton" type="Button" parent="UI/NameEntryPanel/VBoxContainer"]
 layout_mode = 2
 text = "Submit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6bp64")
+volume_db = -10.371
+autoplay = true
 
 [connection signal="pressed" from="UI/GameOverPanel/RestartButton" to="UI" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/RestartButton" to="UI" method="_on_restart_button_pressed"]

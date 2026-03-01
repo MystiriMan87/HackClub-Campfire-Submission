@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://btpojyonk2nas"]
+[gd_scene load_steps=9 format=3 uid="uid://btpojyonk2nas"]
 
 [ext_resource type="Script" uid="uid://dtg5ab6junsa4" path="res://Scripts/Player.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://d0w27x7trnlb8" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_body.png" id="2_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://b8q4gh8xhl7yl" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_head.png" id="3_nn08x"]
 [ext_resource type="Texture2D" uid="uid://cwplv466gbgnt" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_leg.png" id="4_52ee3"]
 [ext_resource type="Texture2D" uid="uid://b6pnabv34p4sr" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_arm.png" id="5_bhhdu"]
+[ext_resource type="AudioStream" uid="uid://bk7hdrej64mxt" path="res://Music/Dirt_Hit_SFX.mp3" id="6_52ee3"]
+[ext_resource type="AudioStream" uid="uid://dvwfo0202gfd3" path="res://Music/Stone_hit_SFX.mp3" id="7_bhhdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyqiw"]
 radius = 40.0
@@ -46,3 +48,11 @@ position = Vector2(-0.5, 1.5)
 shape = SubResource("CircleShape2D_kyqiw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DiggingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_52ee3")
+pitch_scale = 4.0
+
+[node name="RockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bhhdu")
+pitch_scale = 0.99

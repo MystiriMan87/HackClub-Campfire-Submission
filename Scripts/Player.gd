@@ -18,6 +18,8 @@ const LEG_OFFSET    = Vector2(0.0, 15.0)
 @onready var arm_l   : Sprite2D = $ArmL
 @onready var arm_r   : Sprite2D = $ArmR
 @onready var leg     : Sprite2D = $Leg
+@onready var dig_sound  : AudioStreamPlayer = $DiggingSound
+@onready var rock_sound : AudioStreamPlayer = $RockSound
 
 var main_scene : Node
 var is_digging  = false
@@ -135,18 +137,37 @@ func _try_dig(direction: Vector2i):
 	var target = player_tile + direction
 	var result = main_scene.dig_tile(target)
 
-	if result == "empty" or result == "rock":
+	if result == "rock":
+		if rock_sound.playing:
+			rock_sound.stop()
+		rock_sound.pitch_scale = randf_range(0.85, 1.15)
+		rock_sound.play()
 		return
+
+	if result == "empty":
+		return
+		
+	
+	if dig_sound.playing:
+		dig_sound.stop()
+	dig_sound.pitch_scale = randf_range(0.9, 1.1)
+	dig_sound.play()
 
 	is_digging = true
 	dig_timer  = DIG_DURATION
 	dig_anim   = 0.0
 
 	match result:
-		"gem":  _shake_camera(20.0, 0.3)
-		"gold": _shake_camera(15.0, 0.25)
-		"fuel": _shake_camera(10.0, 0.2)
-		_:      _shake_camera(6.0, 0.15)
+		"gem", "gold", "fuel":
+			if rock_sound.playing:
+				rock_sound.stop()
+			rock_sound.pitch_scale = randf_range(0.9, 1.1)
+			rock_sound.play()
+		_:  # dirt
+			if dig_sound.playing:
+				dig_sound.stop()
+			dig_sound.pitch_scale = randf_range(1.3, 1.6)
+			dig_sound.play()
 
 	var depth = player_tile.y - main_scene.SURFACE_ROW
 	main_scene.ui.update_depth(depth)
