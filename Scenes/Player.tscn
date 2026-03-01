@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://btpojyonk2nas"]
+[gd_scene load_steps=7 format=3 uid="uid://btpojyonk2nas"]
 
 [ext_resource type="Script" uid="uid://dtg5ab6junsa4" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Texture2D" uid="uid://bfifkmuv4lo4x" path="res://icon.svg" id="2_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://d0w27x7trnlb8" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_body.png" id="2_5ixxa"]
+[ext_resource type="Texture2D" uid="uid://b8q4gh8xhl7yl" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_head.png" id="3_nn08x"]
+[ext_resource type="Texture2D" uid="uid://cwplv466gbgnt" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_leg.png" id="4_52ee3"]
+[ext_resource type="Texture2D" uid="uid://b6pnabv34p4sr" path="res://Assets/kenney_voxel-pack/PNG/Characters/Gnome/gnome_arm.png" id="5_bhhdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyqiw"]
 radius = 40.0
@@ -9,15 +12,37 @@ radius = 40.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rpqav")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-animation = &""
+[node name="ArmL" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.6640625, 0.609375)
+texture = ExtResource("5_bhhdu")
+offset = Vector2(0, 8)
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.634, 0.581)
+texture = ExtResource("2_5ixxa")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0, -27.000002)
+scale = Vector2(0.6640625, 0.609375)
+texture = ExtResource("3_nn08x")
+
+[node name="Leg" type="Sprite2D" parent="."]
+position = Vector2(0, 29)
+scale = Vector2(0.6640625, 0.609375)
+texture = ExtResource("4_52ee3")
+offset = Vector2(0, -10)
+
+[node name="ArmR" type="Sprite2D" parent="."]
+position = Vector2(0, 13)
+scale = Vector2(0.6640625, 0.609375)
+texture = ExtResource("5_bhhdu")
+offset = Vector2(0, -8)
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("CircleShape2D_kyqiw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 2)
-scale = Vector2(0.6640625, 0.609375)
-texture = ExtResource("2_kyqiw")
+[node name="Camera2D" type="Camera2D" parent="."]

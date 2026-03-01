@@ -98,3 +98,11 @@ func _spawn_particles(tile_pos: Vector2i, type: String):
 	await get_tree().create_timer(1.0).timeout
 	if is_instance_valid(particles):
 		particles.queue_free()
+		
+func restart_game():
+	tilemap.clear()
+	
+	generate_world()
+	
+	$Player.position = Vector2(COLS * TILE_SIZE / 2.0, SURFACE_ROW * TILE_SIZE - TILE_SIZE)
+	$Player.velocity = Vector2.ZERO
