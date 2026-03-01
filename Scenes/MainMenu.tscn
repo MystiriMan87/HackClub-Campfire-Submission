@@ -85,5 +85,12 @@ offset_top = 280.0
 offset_right = 1648.0
 offset_bottom = 584.0
 
+[node name="LeaderboardTitle" type="Label" parent="LeaderboardList"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ghw46")
+theme_override_font_sizes/font_size = 25
+text = "🏆 Leaderboard"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
