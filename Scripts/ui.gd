@@ -14,6 +14,8 @@ extends CanvasLayer
 @onready var name_entry_panel = $NameEntryPanel
 @onready var name_input       = $NameEntryPanel/VBoxContainer/NameInput
 @onready var submit_button    = $NameEntryPanel/VBoxContainer/SubmitButton
+@onready var menu_button = $MenuButton
+
 
 const GOAL_GEMS  = 5
 const GOAL_GOLD  = 10
@@ -34,6 +36,8 @@ func _ready():
 	name_entry_panel.hide()
 	submit_button.pressed.connect(_on_submit_pressed)
 	name_input.text_submitted.connect(_on_name_submitted)
+	menu_button.pressed.connect(_on_menu_button_pressed)
+
 	_refresh_leaderboard_display()
 	
 	var nodes = {
@@ -148,7 +152,8 @@ func _on_name_submitted(player_name: String):
 	name_entry_panel.hide()
 
 func _add_to_leaderboard(entry: Dictionary):
-	leaderboard.append(entry)
+	GameData.add_entry(entry)
+	_refresh_leaderboard_display()
 
 	leaderboard.sort_custom(func(a, b):
 		if a["score"] != b["score"]:
@@ -164,6 +169,9 @@ func _add_to_leaderboard(entry: Dictionary):
 func _refresh_leaderboard_display():
 	if not leaderboard_list:
 		return  # safety check
+		
+	for i in GameData.leaderboard.size():
+		var entry = GameData.leaderboard[i]
 	
 	for child in leaderboard_list.get_children():
 		child.queue_free()
@@ -217,3 +225,7 @@ func reset_game():
 func _on_restart_button_pressed():
 	reset_game()
 	get_parent().restart_game()
+
+
+func _on_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

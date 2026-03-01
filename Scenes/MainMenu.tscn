@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://dbdomvtgv3qv1"]
+[gd_scene load_steps=6 format=3 uid="uid://dbdomvtgv3qv1"]
+
+[ext_resource type="Texture2D" uid="uid://c6hb55p567v1e" path="res://Assets/MainmenuBackground.png" id="1_8saeu"]
+[ext_resource type="Script" uid="uid://du5deniiu2u1b" path="res://Scenes/main_menu.gd" id="1_ghw46"]
+[ext_resource type="FontFile" uid="uid://pwbba46kvr4n" path="res://Assets/Fonts/PixeloidSansBold-RpeJo.ttf" id="2_ghw46"]
+[ext_resource type="FontFile" uid="uid://drw67kb4r0nwa" path="res://Assets/Fonts/PixeloidSans-nR3g1.ttf" id="3_df05h"]
+[ext_resource type="PackedScene" uid="uid://bujof1aj6r2n8" path="res://Scenes/post_process_layer.tscn" id="5_df05h"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +13,77 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ghw46")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8saeu")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 224.0
+offset_right = 1370.0
+offset_bottom = 418.0
+theme_override_colors/font_color = Color(0.99999994, 0.6010788, 0.13768122, 1)
+theme_override_fonts/font = ExtResource("2_ghw46")
+theme_override_font_sizes/font_size = 100
+text = "DIGGY GNOME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 304.0
+offset_right = 846.0
+offset_bottom = 359.0
+rotation = -0.2998154
+theme_override_colors/font_color = Color(1, 0.14117648, 1, 1)
+theme_override_fonts/font = ExtResource("2_ghw46")
+theme_override_font_sizes/font_size = 40
+text = "Now Less Scuffed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 544.0
+offset_right = 1133.0
+offset_bottom = 616.0
+theme_override_fonts/font = ExtResource("3_df05h")
+theme_override_font_sizes/font_size = 50
+text = "▶ Play"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 632.0
+offset_right = 1133.0
+offset_bottom = 704.0
+theme_override_fonts/font = ExtResource("3_df05h")
+theme_override_font_sizes/font_size = 50
+text = "✕ Quit"
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PostProcessLayer" parent="." instance=ExtResource("5_df05h")]
+
+[node name="LeaderboardList" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1392.0
+offset_top = 280.0
+offset_right = 1648.0
+offset_bottom = 584.0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmxwecjghhc1l"]
+[gd_scene load_steps=14 format=3 uid="uid://cmxwecjghhc1l"]
 
 [ext_resource type="Script" uid="uid://basomppy4fhey" path="res://Scripts/Main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://btpojyonk2nas" path="res://Scenes/Player.tscn" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://rw4xao6s0bea" path="res://Assets/kenney_voxel-pack/Spritesheets/spritesheet_tiles.png" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://bw6vrhjpi81cc" path="res://Scripts/ui.gd" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://dpihpfedj7w1i" path="res://Assets/kenney_development-essentials/Gradient/gradient-radial.png" id="4_21xkr"]
-[ext_resource type="Shader" uid="uid://clqk5d06upr1f" path="res://Scenes/main.gdshader" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://bujof1aj6r2n8" path="res://Scenes/post_process_layer.tscn" id="5_6bp64"]
 [ext_resource type="AudioStream" uid="uid://cei503vu3d0pc" path="res://Music/hitslab-game-gaming-video-game-music-459876.mp3" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://bao0aqfo435rd" path="res://Assets/istockphoto-1158457256-612x612.jpg" id="7_344ge"]
+[ext_resource type="FontFile" uid="uid://cs5hf48y7385b" path="res://Assets/Fonts/m5x7.ttf" id="7_d1ilt"]
+[ext_resource type="FontFile" uid="uid://drw67kb4r0nwa" path="res://Assets/Fonts/PixeloidSans-nR3g1.ttf" id="8_6iyac"]
+[ext_resource type="FontFile" uid="uid://pwbba46kvr4n" path="res://Assets/Fonts/PixeloidSansBold-RpeJo.ttf" id="9_fdnlq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
 texture = ExtResource("2_jjvhh")
@@ -197,14 +201,6 @@ physics_layer_0/collision_layer = 15
 physics_layer_0/collision_mask = 15
 sources/2 = SubResource("TileSetAtlasSource_jjvhh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_21xkr"]
-shader = ExtResource("5_kry3j")
-shader_parameter/vignette_strength = 0.910000043225
-shader_parameter/scanline_opacity = 0.074000003515
-shader_parameter/scanline_count = 173.02900584387748
-shader_parameter/aberration = 0.0
-shader_parameter/fisheye_strength = 0.610000076475
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
 
@@ -216,8 +212,7 @@ motion_mirroring = Vector2(1920, 1080)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2
-region_enabled = true
-region_rect = Rect2(5000, 5000, 5000, 5000)
+region_rect = Rect2(2000, 2000, 2000, 2000)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -242,21 +237,7 @@ texture_scale = 3.49
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.27450982, 0.27450982, 0.27450982, 0.7411765)
 
-[node name="PostProcessLayer" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="PostProcess" type="ColorRect" parent="PostProcessLayer"]
-material = SubResource("ShaderMaterial_21xkr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TVFrame" type="TextureRect" parent="PostProcessLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PostProcessLayer" parent="." instance=ExtResource("5_6bp64")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_8gbba")
@@ -273,6 +254,7 @@ grow_horizontal = 2
 
 [node name="ScoreLabel" type="Label" parent="UI/ScorePanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6iyac")
 
 [node name="TimerPanel" type="PanelContainer" parent="UI"]
 offset_left = 717.0
@@ -282,6 +264,7 @@ offset_bottom = 329.0
 
 [node name="TimerLabel" type="Label" parent="UI/TimerPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6iyac")
 
 [node name="FuelPanel" type="PanelContainer" parent="UI"]
 anchors_preset = 5
@@ -295,9 +278,11 @@ grow_horizontal = 2
 
 [node name="FuelLabel" type="Label" parent="UI/FuelPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6iyac")
 
 [node name="FuelBar" type="ProgressBar" parent="UI/FuelPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_d1ilt")
 
 [node name="DepthPanel" type="PanelContainer" parent="UI"]
 offset_left = 1074.0
@@ -307,6 +292,7 @@ offset_bottom = 326.0
 
 [node name="DepthLabel" type="Label" parent="UI/DepthPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6iyac")
 
 [node name="GoalPanel" type="PanelContainer" parent="UI"]
 offset_left = 449.0
@@ -316,6 +302,7 @@ offset_bottom = 262.0
 
 [node name="GoalLabel" type="Label" parent="UI/GoalPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6iyac")
 theme_override_font_sizes/font_size = 20
 
 [node name="GameOverPanel" type="Panel" parent="UI"]
@@ -339,9 +326,11 @@ vertical_alignment = 1
 [node name="RestartButton" type="Button" parent="UI/GameOverPanel"]
 layout_mode = 0
 offset_left = 862.0
-offset_top = 417.0
+offset_top = 585.0
 offset_right = 1003.0
-offset_bottom = 461.0
+offset_bottom = 629.0
+theme_override_fonts/font = ExtResource("7_d1ilt")
+theme_override_font_sizes/font_size = 31
 text = "⛏ Play Again"
 
 [node name="WinPanel" type="Panel" parent="UI"]
@@ -367,9 +356,11 @@ vertical_alignment = 1
 [node name="RestartButton" type="Button" parent="UI/WinPanel"]
 layout_mode = 0
 offset_left = 857.0
-offset_top = 414.0
+offset_top = 593.0
 offset_right = 998.0
-offset_bottom = 458.0
+offset_bottom = 637.0
+theme_override_fonts/font = ExtResource("7_d1ilt")
+theme_override_font_sizes/font_size = 32
 text = "⛏ Play Again"
 
 [node name="LeaderboardPanel" type="PanelContainer" parent="UI"]
@@ -383,6 +374,7 @@ layout_mode = 2
 
 [node name="LeaderboardTitle" type="Label" parent="UI/LeaderboardPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fdnlq")
 theme_override_font_sizes/font_size = 25
 text = "🏆 Leaderboard"
 horizontal_alignment = 1
@@ -416,6 +408,26 @@ layout_mode = 2
 layout_mode = 2
 text = "Submit"
 
+[node name="TextureRect" type="TextureRect" parent="UI"]
+visible = false
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_344ge")
+
+[node name="MenuButton" type="Button" parent="UI"]
+offset_left = 1321.0
+offset_top = 458.0
+offset_right = 1471.0
+offset_bottom = 506.0
+theme_override_fonts/font = ExtResource("9_fdnlq")
+theme_override_font_sizes/font_size = 29
+text = "🏠 Menu"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_6bp64")
 volume_db = -10.371
@@ -423,3 +435,4 @@ autoplay = true
 
 [connection signal="pressed" from="UI/GameOverPanel/RestartButton" to="UI" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/RestartButton" to="UI" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/MenuButton" to="UI" method="_on_menu_button_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bujof1aj6r2n8"]
+
+[ext_resource type="Shader" uid="uid://clqk5d06upr1f" path="res://Scenes/main.gdshader" id="1_l1j5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21xkr"]
+shader = ExtResource("1_l1j5s")
+shader_parameter/vignette_strength = 0.910000043225
+shader_parameter/scanline_opacity = 0.074000003515
+shader_parameter/scanline_count = 173.02900584387748
+shader_parameter/aberration = 0.0
+shader_parameter/fisheye_strength = 0.610000076475
+
+[node name="PostProcessLayer" type="CanvasLayer"]
+layer = 10
+
+[node name="PostProcess" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_21xkr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
